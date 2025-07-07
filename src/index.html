@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <button class="add" onclick="">Add Task</button>
+
+        <nav>
+            <ul>
+                <li class="inbox">Inbox</li>
+                <li class="today">Today</li>
+                <li class="projects">
+                    <ul>
+                        Projects
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <main>
+        <h1></h1>
+        <section class="todoList"></section>
+    </main>
+
+    <!-- DIALOG MODALS -->
+    <dialog class="addTodo">
+    <form>
+        <label>
+            <input id="title" name="title" placeholder="What do you have to do?">
+        </label>
+        <label>
+            <input id="desc" name="description" placeholder="Description">
+        </label>
+        <label>
+            <input type="date" id="dueDate" name="dueDate">
+        </label>
+        <label>
+            <select id="priority" name="priority">
+                <optgroup label="Priority">
+                    <option>None</option>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </optgroup>
+            </select>
+        </label>
+        <label>
+            <input id="project" name="project">
+        </label>
+
+        <button type="submit" id="confirmBtn">Add Task</button>
+    </form>
+    </dialog>
+</body>
+</html>
