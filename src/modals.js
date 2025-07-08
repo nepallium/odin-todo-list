@@ -3,10 +3,12 @@ import todoState from "./state";
 import domFunctions from "./domFunctions";
 
 export function listenForNewTodo() {
+    
     // Add Task Modal
     const dialog = document.querySelector("dialog.add-todo")
     const addButton = document.querySelector('.add');
     addButton.addEventListener('click', () => {
+        updateProjectDropdown()
         dialog.showModal()
     })
 
@@ -32,6 +34,23 @@ export function listenForNewTodo() {
     })
 }
 
+function updateProjectDropdown() {
+    const dropdown = document.querySelector("select#project");
+    dropdown.innerHTML = ""
+
+    const noneOption = document.createElement("option")
+    noneOption.textContent = "None"
+    dropdown.appendChild(noneOption)
+
+    for (const proj in todoState.allLists) {
+        if (proj != "inbox") {
+            const option = document.createElement("option");
+            option.textContent = proj
+            dropdown.appendChild(option)
+        }
+    }
+}
+
 export function listenForNewProject() {
     const dialog = document.querySelector("dialog.add-project")
     const addButton = document.querySelector('button.add-project');
@@ -45,7 +64,11 @@ export function listenForNewProject() {
         e.preventDefault()
 
         const project = document.getElementById("proj-name").value;
-        todoState.addProject(project);
+        if (!todoState.addProject(project)) {
+            alert("A project with the same name already exists!")
+            form.reset()
+            return
+        };
         console.log(todoState.allLists)
 
         form.reset()

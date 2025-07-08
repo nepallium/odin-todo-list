@@ -29,28 +29,33 @@
 
     <!-- DIALOG MODALS -->
     <dialog class="add-todo">
-    <form id="todo-form">
+    <form autocomplete="off" id="todo-form">
         <label>
-            <input id="title" name="title" placeholder="What do you have to do?">
+            Title*
+            <input id="title" name="title" placeholder="What do you have to do?" required aria-required="true">
         </label>
         <label>
-            <input id="desc" name="description" placeholder="Description">
+            Description
+            <input id="desc" name="description">
         </label>
         <label>
+            Due Date
             <input type="date" id="dueDate" name="dueDate">
         </label>
         <label>
+            Priority
             <select id="priority" name="priority">
-                <optgroup label="Priority">
-                    <option>None</option>
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-                </optgroup>
+                <option>None</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
             </select>
         </label>
-        <label>
-            <input id="project" name="project">
+        <label class="project-autocomplete">
+            Project
+            <select id="project" name="project">
+                <option>None</option>
+            </select>
         </label>
 
         <button type="submit" id="confirmBtn">Add Task</button>
