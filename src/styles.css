@@ -3,10 +3,14 @@ body {
     height: 100vh;
 }
 
-nav {
+section.left-container {
+    height: 100%;
     background-color: grey;
-    max-width: max-content;
-    min-width: 250px;
+
+    nav {
+        max-width: max-content;
+        min-width: 250px;
+    }
 }
 
 main {

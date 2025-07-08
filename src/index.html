@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
-    <section>
+    <section class="left-container">
         <button class="add" onclick="">Add Task</button>
 
         <nav>
@@ -17,6 +17,7 @@
                     <ul>
                         Projects
                     </ul>
+                    <button class="add-project">New Project</button>
                 </li>
             </ul>
         </nav>
@@ -27,8 +28,8 @@
     </main>
 
     <!-- DIALOG MODALS -->
-    <dialog class="addTodo">
-    <form>
+    <dialog class="add-todo">
+    <form id="todo-form">
         <label>
             <input id="title" name="title" placeholder="What do you have to do?">
         </label>
@@ -54,6 +55,17 @@
 
         <button type="submit" id="confirmBtn">Add Task</button>
     </form>
+    </dialog>
+
+    <dialog class="add-project">
+        <form id="project-form">
+            <label>
+                Project name
+                <input id="proj-name" name="name" placeholder="School">
+            </label>
+
+            <button type="submit" id="confirmBtn">Add Project</button>
+        </form>
     </dialog>
 </body>
 </html>
