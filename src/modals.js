@@ -1,29 +1,32 @@
 import Todo from "./todo";
-import todoState from "./state";
+import todoState from "./todoState";
 import domFunctions from "./domFunctions";
 
 export function listenForNewTodo() {
-    
     // Add Task Modal
     const dialog = document.querySelector("dialog.add-todo")
-    const addButton = document.querySelector('.add');
-    addButton.addEventListener('click', () => {
+    const addButtons = document.querySelectorAll('button.add');
+    addButtons.forEach(button => button.addEventListener('click', () => {
         updateProjectDropdown()
         dialog.showModal()
-    })
+    }))
 
     // New task added through form submit
     const form = dialog.querySelector("form#todo-form")
     form.addEventListener("submit", (e) => {
         e.preventDefault()
 
+        const desc = document.getElementById("desc").value;
+        const dueDate = document.getElementById("dueDate").value
+        const priority = document.getElementById("priority").value
+        const project = document.getElementById("project").value
         const todo = new Todo(
             document.getElementById("title").value,
             {
-                desc: document.getElementById("desc").value,
-                dueDate: document.getElementById("dueDate").value,
-                priority: document.getElementById("priority").value.toLowerCase(),
-                project: document.getElementById("project").value,
+                desc: desc,
+                dueDate: dueDate ? dueDate.split("-") : null,
+                priority: priority.toLowerCase(),
+                project: project === "None" ? "inbox" : project,
             })
         todoState.addTodo(todo, todo.project)
         domFunctions.displayTodo(todo)
@@ -71,6 +74,7 @@ export function listenForNewProject() {
         };
         console.log(todoState.allLists)
 
+        domFunctions.displayProjectInList(project)
         form.reset()
         dialog.close()
     })

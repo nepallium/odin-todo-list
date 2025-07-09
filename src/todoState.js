@@ -6,9 +6,6 @@ class TodoState {
     }
 
     addTodo(todo, list = "inbox") {
-        if (!this.allLists[list]) {
-            this.allLists[list] = []
-        }
         this.allLists[list].push(todo)
     }
 

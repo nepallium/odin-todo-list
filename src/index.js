@@ -1,19 +1,22 @@
 import "./reset.css";
 import "./styles.css";
 import TodoList from "./todoList";
-import Inbox from "./inbox"
-import todoState from "./state";
+import todoState from "./todoState";
 import Todo from "./todo";
 import domFunctions from "./domFunctions";
 import { listenForNewProject, listenForNewTodo } from "./modals";
+import { inbox } from "./pages";
 
 
 // Test: Add some todos
-todoState.addTodo(new Todo("clean", {priority: "high", dueDate: "July 16th", desc: "clean up ya filthy pig"}))
-todoState.addTodo(new Todo("walk", {dueDate: "July 16th", desc: "step grind"}))
+todoState.addTodo(new Todo("clean", {priority: "high", dueDate: new Date(2025, 6, 15), desc: "clean up ya filthy pig"}))
+todoState.addTodo(new Todo("walk", {dueDate: new Date(2025, 6, 15), desc: "step grind"}))
+todoState.addTodo(new Todo("today", {dueDate: new Date(), desc: "step grind"}))
 
 // Display inbox on load
-Inbox()
+inbox()
 
 listenForNewProject()
 listenForNewTodo()
+
+domFunctions.listenForPageChange()

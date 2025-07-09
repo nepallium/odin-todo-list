@@ -1,5 +1,7 @@
-import todoState from "./state"
+import todoState from "./todoState"
 import Todo from "./todo"
+import { showProject, inbox, today } from "./pages";
+import { format } from "date-fns";
 
 class DOM {
     displayAddTodoModal() {
@@ -40,10 +42,11 @@ class DOM {
             infoContainer.appendChild(desc)
         }
         
+        // console.log(todo.dueDate)
         if (todo.dueDate) {
             const date = document.createElement("p")
             date.classList = "date"
-            date.textContent = todo.dueDate
+            date.textContent = format(new Date(todo.dueDate), "P")
             infoContainer.appendChild(date)
         }
 
@@ -55,6 +58,59 @@ class DOM {
         if (todoElement && todoElement.parentNode) {
             todoElement.parentNode.removeChild(todoElement)
         }
+    }
+
+    displayProjectInList(project) {
+        const projectList = document.querySelector("ul.proj-list")
+
+        const projElement = document.createElement("li")
+        projElement.classList.add("proj")
+        projElement.classList.add("page")
+        projElement.textContent = project
+        projectList.appendChild(projElement)
+
+        // event listener
+        this.listenForProjectPage(projElement)
+    }
+
+    listenForProjectPage(projElement) {
+        projElement.addEventListener("click", () => {
+            const todoListSection = document.querySelector("section.todoList")
+            todoListSection.innerHTML = ""
+            showProject(projElement.textContent)
+        })
+    }
+
+    listenForPageChange() {
+        const todoListSection = document.querySelector("section.todoList");
+
+        // Map class names to functions
+        const pageMap = {
+            inbox: inbox,
+            today: today,
+            // Add more mappings as needed
+        };
+
+        // Select all page elements
+        const pages = document.querySelectorAll("li.page");
+
+        pages.forEach(page => {
+            page.addEventListener("click", () => {
+                todoListSection.innerHTML = "";
+                // Find which function to call based on class
+                for (const key in pageMap) {
+                    if (page.classList.contains(key)) {
+                        pageMap[key]();
+                        return;
+                    }
+                }
+                // If it's a project page, handle separately
+                // will be used when using localStorage (?)
+                if (page.classList.contains("proj")) {
+                    showProject(page.textContent);
+                }
+            });
+        });
     }
 }
 

@@ -7,15 +7,14 @@
 </head>
 <body>
     <section class="left-container">
-        <button class="add" onclick="">Add Task</button>
-
         <nav>
+            <button class="add">Add Task</button>
             <ul>
-                <li class="inbox">Inbox</li>
-                <li class="today">Today</li>
+                <li class="inbox page">Inbox</li>
+                <li class="today page">Today</li>
                 <li class="projects">
-                    <ul>
-                        Projects
+                    Projects
+                    <ul class="proj-list">
                     </ul>
                     <button class="add-project">New Project</button>
                 </li>
@@ -24,7 +23,9 @@
     </section>
     <main>
         <h1></h1>
-        <section class="todoList"></section>
+        <section class="todoList">
+        </section>
+        <button class="add">Add Task</button>
     </main>
 
     <!-- DIALOG MODALS -->
