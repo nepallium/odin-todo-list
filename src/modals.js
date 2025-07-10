@@ -74,8 +74,49 @@ export function listenForNewProject() {
         };
         console.log(todoState.allLists)
 
-        domFunctions.displayProjectInList(project)
+        domFunctions.displayProjectInSidebar(project)
         form.reset()
         dialog.close()
+    })
+}
+
+export function listenForProjDel(delElement) {
+    const dialog = document.querySelector("dialog.del-project");
+
+    delElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dialog.projElementToDelete = delElement.parentElement.parentElement;
+        dialog.showModal();
+    });
+
+    const form = dialog.querySelector("form");
+    if (!form.hasListener) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // e.submitter is the button that was clicked to submit the form
+            const projElement = dialog.projElementToDelete;
+            if (e.submitter && e.submitter.value === "yes" && projElement) {
+                const projectName = projElement.querySelector("p").textContent;
+                todoState.removeProject(projectName);
+                domFunctions.removeProject(projElement);
+                console.log(todoState.allLists);
+            }
+
+            form.reset();
+            dialog.close();
+            dialog.projElementToDelete = null;
+        });
+        form.hasListener = true;
+    }
+}
+
+export function listenForDialogClose() {
+    const closeBtns = document.querySelectorAll("span.cancel")
+
+    closeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.parentElement.parentElement.close()
+        })
     })
 }

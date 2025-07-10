@@ -1,3 +1,5 @@
+import { storageState } from "./localStorageStuff"
+
 class TodoState {
     constructor() {
         this.allLists = {
@@ -7,6 +9,7 @@ class TodoState {
 
     addTodo(todo, list = "inbox") {
         this.allLists[list].push(todo)
+        storageState.addTodo(todo)
     }
 
     removeTodo(todo, list = "inbox") {

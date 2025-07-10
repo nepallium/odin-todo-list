@@ -2,6 +2,7 @@ import todoState from "./todoState"
 import Todo from "./todo"
 import { showProject, inbox, today } from "./pages";
 import { format } from "date-fns";
+import { listenForProjDel } from "./modals";
 
 class DOM {
     displayAddTodoModal() {
@@ -60,13 +61,33 @@ class DOM {
         }
     }
 
-    displayProjectInList(project) {
+    displayProjectInSidebar(project) {
         const projectList = document.querySelector("ul.proj-list")
 
         const projElement = document.createElement("li")
         projElement.classList.add("proj")
         projElement.classList.add("page")
-        projElement.textContent = project
+        const p = document.createElement("p")
+        p.textContent = project
+        projElement.appendChild(p)
+
+        const options = document.createElement("div")
+        // edit button
+        const edit = document.createElement("span")
+        edit.classList.add("material-symbols-outlined")
+        edit.classList.add("edit")
+        edit.textContent = "edit"
+        options.appendChild(edit)
+
+        // delete button
+        const del = document.createElement("span")
+        del.classList.add("material-symbols-outlined")
+        del.classList.add("delete")
+        del.textContent = "delete"
+        listenForProjDel(del)
+        options.appendChild(del)
+
+        projElement.appendChild(options)
         projectList.appendChild(projElement)
 
         // event listener
@@ -111,6 +132,10 @@ class DOM {
                 }
             });
         });
+    }
+
+    removeProject(projElement) {
+        projElement.remove()
     }
 }
 

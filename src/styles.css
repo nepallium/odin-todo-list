@@ -1,9 +1,14 @@
 body {
-    display: flex;
+    display: grid;
+    grid-template: max-content auto / 250px 1fr;
     height: 100vh;
 }
 
-button {
+header {
+    grid-column: span 2;
+}
+
+button, span.material-symbols-outlined {
     cursor: pointer;
 }
 

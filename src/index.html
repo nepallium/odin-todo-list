@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,250,0,0"/>
 </head>
 <body>
+    <header>
+        <span><img></span>
+        <h1>Todo List</h1>
+    </header>
     <section class="left-container">
         <nav>
             <button class="add">Add Task</button>
@@ -31,6 +37,8 @@
     <!-- DIALOG MODALS -->
     <dialog class="add-todo">
     <form autocomplete="off" id="todo-form">
+        <span class="material-symbols-outlined cancel">cancel</span>
+        <p>Add Todo</p>
         <label>
             Title*
             <input id="title" name="title" placeholder="What do you have to do?" required aria-required="true">
@@ -65,9 +73,30 @@
 
     <dialog class="add-project">
         <form id="project-form">
+            <span class="material-symbols-outlined cancel">cancel</span>
             <label>
                 Project name
                 <input id="proj-name" name="name" placeholder="School">
+            </label>
+
+            <button type="submit" id="confirmBtn">Add Project</button>
+        </form>
+    </dialog>
+
+    <dialog class="del-project">
+        <form id="del-project">
+            <p>Are you sure?</p>
+            <button value="yes" type="submit" class="confirmDel">Yes</button>
+            <button value="no" type="submit" class="confirmDel" autofocus>No</button>
+        </form>
+    </dialog>
+
+    <dialog class="edit-project">
+        <form id="edit-project">
+            <span class="material-symbols-outlined cancel">cancel</span>
+            <label>
+                Change project name
+                <input id="proj-name" name="name">
             </label>
 
             <button type="submit" id="confirmBtn">Add Project</button>

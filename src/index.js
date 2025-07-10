@@ -1,10 +1,9 @@
 import "./reset.css";
 import "./styles.css";
-import TodoList from "./todoList";
 import todoState from "./todoState";
 import Todo from "./todo";
 import domFunctions from "./domFunctions";
-import { listenForNewProject, listenForNewTodo } from "./modals";
+import { listenForNewProject, listenForNewTodo, listenForDialogClose } from "./modals";
 import { inbox } from "./pages";
 
 
@@ -20,3 +19,5 @@ listenForNewProject()
 listenForNewTodo()
 
 domFunctions.listenForPageChange()
+
+listenForDialogClose()
