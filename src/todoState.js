@@ -7,9 +7,11 @@ class TodoState {
         }
     }
 
-    addTodo(todo, list = "inbox") {
+    addTodo(todo, list = "inbox", silent = false) {
         this.allLists[list].push(todo)
-        storageState.addTodo(todo)
+        if (!silent) {
+            storageState.addTodo(todo)
+        }
     }
 
     removeTodo(todo, list = "inbox") {
@@ -20,12 +22,11 @@ class TodoState {
                 
                 //
                 console.log(todoState.allLists)
+                storageState.removeTodo(todo)
                 
                 return true
             }
         }
-        //
-        console.log(todoState.allLists)
 
         return false
     }
@@ -35,12 +36,14 @@ class TodoState {
             return false
         }
         this.allLists[name] = []
+        storageState.addProject(name)
         return true
     }
 
     removeProject(name) {
         if (name in this.allLists) {
             delete this.allLists[name]
+            storageState.removeProject(name)
             return true
         }
         return false

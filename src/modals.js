@@ -116,7 +116,10 @@ export function listenForDialogClose() {
 
     closeBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            btn.parentElement.parentElement.close()
+            const dialog = btn.parentElement.parentElement
+            dialog.close()
+            const form = dialog.querySelector("form")
+            form.reset()
         })
     })
 }

@@ -98,7 +98,7 @@ class DOM {
         projElement.addEventListener("click", () => {
             const todoListSection = document.querySelector("section.todoList")
             todoListSection.innerHTML = ""
-            showProject(projElement.textContent)
+            showProject(projElement.querySelector("p").textContent)
         })
     }
 
@@ -128,7 +128,7 @@ class DOM {
                 // If it's a project page, handle separately
                 // will be used when using localStorage (?)
                 if (page.classList.contains("proj")) {
-                    showProject(page.textContent);
+                    showProject(page.querySelector("p").textContent)
                 }
             });
         });

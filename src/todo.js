@@ -1,6 +1,3 @@
-import todoState from "./todoState"
-import DOMStuff from "./domFunctions"
-
 export default class Todo {
     constructor(title, options={}) {
         this.title = title
