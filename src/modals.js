@@ -1,6 +1,7 @@
 import Todo from "./todo";
 import todoState from "./todoState";
 import domFunctions from "./domFunctions";
+import { format } from "date-fns";
 
 export function listenForNewTodo() {
     // Add Task Modal
@@ -8,6 +9,28 @@ export function listenForNewTodo() {
     const addButtons = document.querySelectorAll('button.add');
     addButtons.forEach(button => button.addEventListener('click', () => {
         updateProjectDropdown()
+        
+        // Hide due date OR project input boxes
+        const mainH1 = document.querySelector("main h1")
+        const dueDateInput = document.getElementById("dueDate")
+        const projInput = document.getElementById("project")
+        
+        if (mainH1.textContent === "Inbox") {
+            dueDateInput.parentElement.style.display = "block"
+            projInput.parentElement.style.display = "block"
+
+            dueDateInput.value = ""
+            projInput.value = "None"
+        }
+        else if (mainH1.textContent === "Today") {
+            dueDateInput.value = format(new Date(), "yyyy-MM-dd")
+            dueDateInput.parentElement.style.display = "none"
+        }
+        else {
+            projInput.value = mainH1.textContent
+            projInput.parentElement.style.display = "none"
+        }
+        
         dialog.showModal()
     }))
 
