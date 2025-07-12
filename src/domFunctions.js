@@ -67,17 +67,30 @@ class DOM {
         const projElement = document.createElement("li")
         projElement.classList.add("proj")
         projElement.classList.add("page")
+
+        const info = document.createElement("div")
+        info.classList.add("info")
+        // icon
+        const icon = document.createElement("span")
+        icon.classList.add("material-symbols-outlined")
+        icon.classList.add("icon")
+        icon.textContent = "assignment"
+        info.appendChild(icon)
+
+        // title
         const p = document.createElement("p")
         p.textContent = project
-        projElement.appendChild(p)
+        info.appendChild(p)
+        projElement.appendChild(info)
 
         const options = document.createElement("div")
-        // edit button
-        const edit = document.createElement("span")
-        edit.classList.add("material-symbols-outlined")
-        edit.classList.add("edit")
-        edit.textContent = "edit"
-        options.appendChild(edit)
+        options.classList.add("options")
+        // // edit button
+        // const edit = document.createElement("span")
+        // edit.classList.add("material-symbols-outlined")
+        // edit.classList.add("edit")
+        // edit.textContent = "edit"
+        // options.appendChild(edit)
 
         // delete button
         const del = document.createElement("span")
