@@ -1,4 +1,4 @@
-# odin-todo-list
+# Todo List
 
 [Live preview](https://nepallium.github.io/odin-todo-list/)
 
